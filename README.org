@@ -1,0 +1,22 @@
+#+TITLE: Compile Docker for Pine64
+#+OPTIONS: toc:2 num:nil
+
+This repository stores binary Docker files compiled from source on Pine64 and for Pine64.
+
+Bianry Docker files are stored under versioned branch. To extract the Docker binary files on Pine64, this can be done in one step
+
+#+BEGIN_SRC bash
+curl -sLk https://github.com/yang-l/pine64-docker/raw/v1.12.0/docker.tar.xz | tar -C /usr/bin/ -xJpf -
+#+END_SRC
+
+The version string "v1.12.0" can be replaced by any available branch names under this repository.
+
+The Docker binary files are compiled by following the instructions from [[https://docs.docker.com/v1.5/contributing/devenvironment/][Docker offical]]. The following steps need to be run under a Pine64 board (or under a aarch64 QEmu instance), otherwise different architechture binary files may be built.
+
+#+BEGIN_SRC bash
+git clone --depth 1 --branch v1.12.1 https://github.com/docker/docker.git
+cd docker
+make build
+make binary
+tar cJhvf docker.tar.xz --xform='s,bundles/1.12.1/binary-client,.,g;s,bundles/1.12.1/binary-daemon,.,g' bundles/1.12.1/binary-client/docker bundles/1.12.1/binary-daemon/docker-containerd bundles/1.12.1/binary-daemon/docker-containerd-ctr bundles/1.12.1/binary-daemon/docker-containerd-shim bundles/1.12.1/binary-daemon/dockerd bundles/1.12.1/binary-daemon/docker-proxy bundles/1.12.1/binary-daemon/docker-runc
+#+END_SRC
