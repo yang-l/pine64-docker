@@ -1,7 +1,7 @@
 #+TITLE: Compile Docker for Pine64
 #+OPTIONS: toc:2 num:nil
 
-[[https://travis-ci.org/yang-l/pine64-docker]][file:https://travis-ci.org/yang-l/pine64-docker.svg?branch=master]]
+[[https://travis-ci.org/yang-l/pine64-docker][file:https://travis-ci.org/yang-l/pine64-docker.svg?branch=master]]
 
 This repository stores binary Docker files compiled from source on Pine64 and for Pine64.
 
@@ -22,3 +22,5 @@ make build
 make binary
 tar cJhvf docker.tar.xz --xform='s,bundles/1.12.1/binary-client,.,g;s,bundles/1.12.1/binary-daemon,.,g' bundles/1.12.1/binary-client/docker bundles/1.12.1/binary-daemon/docker-containerd bundles/1.12.1/binary-daemon/docker-containerd-ctr bundles/1.12.1/binary-daemon/docker-containerd-shim bundles/1.12.1/binary-daemon/dockerd bundles/1.12.1/binary-daemon/docker-proxy bundles/1.12.1/binary-daemon/docker-runc
 #+END_SRC
+
+Also, this process can be run inside Docker by =build-docker-bin.sh=, and the final binary tarball is stored in =output/docker.tar.xz=
