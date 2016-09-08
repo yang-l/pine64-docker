@@ -1,0 +1,16 @@
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+branches:
+  only:
+  - master
+
+install:
+  - bash ./build-docker-bin.sh debian:jessie
+
+script:
+  - test ./output/docker.tar.xz || exit 1

@@ -1,6 +1,8 @@
 #+TITLE: Compile Docker for Pine64
 #+OPTIONS: toc:2 num:nil
 
+[[https://travis-ci.org/yang-l/pine64-docker]][file:https://travis-ci.org/yang-l/pine64-docker.svg?branch=master]]
+
 This repository stores binary Docker files compiled from source on Pine64 and for Pine64.
 
 Bianry Docker files are stored under versioned branch. To extract the Docker binary files on Pine64, this can be done in one step

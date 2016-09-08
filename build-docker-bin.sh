@@ -18,6 +18,7 @@ RUN set -xe \
        git \
        ca-certificates \
        xz-utils \
+       libltdl7 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
