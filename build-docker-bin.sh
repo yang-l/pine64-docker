@@ -6,7 +6,7 @@ OUTPUT_DIR=$(pwd)/"output"
 
 BASE_IMAGE=${1:-aarch64/debian:jessie}
 DOCKER_IMAGE="docker-builder"
-DOCKER_VERSION="1.12.1"
+DOCKER_VERSION="1.12.3"
 
 docker build -t "${DOCKER_IMAGE}" - <<EOF
 
