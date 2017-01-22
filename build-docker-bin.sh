@@ -6,7 +6,7 @@ OUTPUT_DIR=$(pwd)/"output"
 
 BASE_IMAGE=${1:-aarch64/debian:jessie}
 DOCKER_IMAGE="docker-builder"
-DOCKER_VERSION="1.12.6"
+DOCKER_VERSION="1.13.0"
 
 docker build -t "${DOCKER_IMAGE}" - <<EOF
 
@@ -45,5 +45,5 @@ make binary
 EOF
 
 cd "${OUTPUT_DIR}/docker"
-tar -cJhvf ../docker.tar.xz --xform='s,bundles/"${DOCKER_VERSION}"/binary-client,.,g;s,bundles/"${DOCKER_VERSION}"/binary-daemon,.,g' bundles/"${DOCKER_VERSION}"/binary-client/docker bundles/"${DOCKER_VERSION}"/binary-daemon/docker-containerd bundles/"${DOCKER_VERSION}"/binary-daemon/docker-containerd-ctr bundles/"${DOCKER_VERSION}"/binary-daemon/docker-containerd-shim bundles/"${DOCKER_VERSION}"/binary-daemon/dockerd bundles/"${DOCKER_VERSION}"/binary-daemon/docker-proxy bundles/"${DOCKER_VERSION}"/binary-daemon/docker-runc
+tar -cJhvf ../docker.tar.xz --xform='s,bundles/"${DOCKER_VERSION}"/binary-client,.,g;s,bundles/"${DOCKER_VERSION}"/binary-daemon,.,g' bundles/"${DOCKER_VERSION}"/binary-client/docker bundles/"${DOCKER_VERSION}"/binary-daemon/docker-containerd bundles/"${DOCKER_VERSION}"/binary-daemon/docker-containerd-ctr bundles/"${DOCKER_VERSION}"/binary-daemon/docker-containerd-shim bundles/"${DOCKER_VERSION}"/binary-daemon/dockerd bundles/"${DOCKER_VERSION}"/binary-daemon/docker-init bundles/"${DOCKER_VERSION}"/binary-daemon/docker-proxy bundles/"${DOCKER_VERSION}"/binary-daemon/docker-runc
 cd -
