@@ -6,7 +6,7 @@ OUTPUT_DIR=$(pwd)/"output"
 
 BASE_IMAGE=${1:-aarch64/debian:jessie}
 DOCKER_IMAGE="docker-builder"
-DOCKER_VERSION="1.13.0"
+DOCKER_VERSION="17.03.0-ce"
 
 docker build -t "${DOCKER_IMAGE}" - <<EOF
 
@@ -36,7 +36,7 @@ docker run -i --rm \
 set -x
 
 cd ${OUTPUT_DIR}
-git clone --depth 1 --branch v${DOCKER_VERSION} https://github.com/docker/docker.git
+git clone --depth 1 --branch v${DOCKER_VERSION} --single-branch https://github.com/docker/docker.git
 
 cd docker
 make build

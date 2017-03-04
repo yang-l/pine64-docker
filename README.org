@@ -16,11 +16,11 @@ The version string "v1.13.0" can be replaced by any available branch names under
 The Docker binary files are compiled by following the instructions from [[https://docs.docker.com/v1.5/contributing/devenvironment/][Docker offical]]. The following steps need to be run under a Pine64 board (or under a aarch64 QEmu instance), otherwise different architechture binary files may be built.
 
 #+BEGIN_SRC bash
-git clone --depth 1 --branch v1.13.0 https://github.com/docker/docker.git
+git clone --depth 1 --branch v17.03.0-ce --single-branch https://github.com/docker/docker.git
 cd docker
 make build
 make binary
-tar cJhvf docker.tar.xz --xform='s,bundles/1.13.0/binary-client,.,g;s,bundles/1.13.0/binary-daemon,.,g' bundles/1.13.0/binary-client/docker bundles/1.13.0/binary-daemon/docker-containerd bundles/1.13.0/binary-daemon/docker-containerd-ctr bundles/1.13.0/binary-daemon/docker-containerd-shim bundles/1.13.0/binary-daemon/dockerd bundles/1.13.0/binary-daemon/docker-init bundles/1.13.0/binary-daemon/docker-proxy bundles/1.13.0/binary-daemon/docker-runc
+tar cJhvf docker.tar.xz --xform='s,bundles/17.03.0-ce/binary-client,.,g;s,bundles/17.03.0-ce/binary-daemon,.,g' bundles/17.03.0-ce/binary-client/docker bundles/17.03.0-ce/binary-daemon/docker-containerd bundles/17.03.0-ce/binary-daemon/docker-containerd-ctr bundles/17.03.0-ce/binary-daemon/docker-containerd-shim bundles/17.03.0-ce/binary-daemon/dockerd bundles/17.03.0-ce/binary-daemon/docker-init bundles/17.03.0-ce/binary-daemon/docker-proxy bundles/17.03.0-ce/binary-daemon/docker-runc
 #+END_SRC
 
 Also, this process can be run inside Docker by =build-docker-bin.sh=, and the final binary tarball is stored in =output/docker.tar.xz=
