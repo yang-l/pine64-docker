@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -x
+set -e
 
 OUTPUT_DIR=$(pwd)/"output"
 
@@ -36,14 +37,19 @@ docker run -i --rm \
 set -x
 
 cd ${OUTPUT_DIR}
-git clone --depth 1 --branch v${DOCKER_VERSION} --single-branch https://github.com/docker/docker.git
+git clone --depth 1 --branch v${DOCKER_VERSION} --single-branch https://github.com/docker/docker-ce.git
 
-cd docker
+# docker-cli
+cd "${OUTPUT_DIR}/docker-ce/components/cli/"
+make -f docker.Makefile binary
+
+# dockerd
+cd "${OUTPUT_DIR}/docker-ce/components/engine"
 make build
 make binary
 
 EOF
 
-cd "${OUTPUT_DIR}/docker"
-tar -cJhvf ../docker.tar.xz --xform='s,bundles/binary-daemon,.,g' bundles/binary-daemon/docker-containerd bundles/binary-daemon/docker-containerd-ctr bundles/binary-daemon/docker-containerd-shim bundles/binary-daemon/dockerd bundles/binary-daemon/docker-init bundles/binary-daemon/docker-proxy bundles/binary-daemon/docker-runc
+cd "${OUTPUT_DIR}/docker-ce/components/"
+tar -cJhvf "${OUTPUT_DIR}/docker.tar.xz" --xform='s,engine/bundles/binary-daemon,.,g;s,cli/build/,.,g' engine/bundles/binary-daemon/docker-containerd engine/bundles/binary-daemon/docker-containerd-ctr engine/bundles/binary-daemon/docker-containerd-shim engine/bundles/binary-daemon/dockerd engine/bundles/binary-daemon/docker-init engine/bundles/binary-daemon/docker-proxy engine/bundles/binary-daemon/docker-runc cli/build/docker
 cd -
